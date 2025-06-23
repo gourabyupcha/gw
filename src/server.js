@@ -1,15 +1,15 @@
 // server.js
 const http = require('http');
 const app = require('./app');
-const { redisClient } = require('./config/redisClient');
+require('dotenv').config()
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const server = http.createServer(app);
 
 (async () => {
   server.listen(PORT, () => {
-    console.log(`🚀 Server listening on port ${PORT}`);
+    console.log(`🚀 Gateway running on port ${PORT}`);
   });
 })();
 
@@ -22,9 +22,5 @@ function shutdown() {
   console.log('🛑 Gracefully shutting down...');
   server.close(() => {
     console.log('✅ HTTP server closed');
-    redisClient.quit().then(() => {
-      console.log('🔌 Redis client closed');
-      process.exit(0);
-    });
   });
 }

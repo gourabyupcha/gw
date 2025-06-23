@@ -1,3 +1,6 @@
 node_modules
 .env
 bun.lockb
+.venv
+__pycache__
+bun.lockb

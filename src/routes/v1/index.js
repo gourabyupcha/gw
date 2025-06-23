@@ -1,12 +1,22 @@
 const express = require('express');
-const users = require('./users');
+const producers=require('./producer')
+const consumers=require('./consumer')
 const services = require('./services');
-const cacheMiddleware = require('../../middlewares/cache');
+const menu = require('./menu');
+const cart = require('./cart');
+const bookings = require('./bookings');
+const payments = require('./payments');
 const { API_VERSION } = require('../../config');
 
 const router = express.Router();
 
-router.use('/users', users); 
-router.use('/services', cacheMiddleware(API_VERSION, 3000), services);
+router.use('/producers', producers); 
+router.use('/consumers', consumers); 
+router.use('/services', services);
+router.use('/menu', menu);
+router.use('/cart', cart);
+router.use('/bookings', bookings);
+router.use('/payments', payments);
+
 
 module.exports = router;

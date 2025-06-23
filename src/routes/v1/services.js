@@ -1,13 +1,9 @@
 const express = require('express');
-const proxyToServicesService = require('../../services/services');
+const proxy = require('../../services/services');
 
 const router = express.Router();
 
-// Forward all user-related requests
-router.get('/', proxyToServicesService);
-// router.get('/:id', proxyToServicesService);
-// router.post('/', proxyToServicesService);
-// router.put('/:id', proxyToServicesService);
-// router.delete('/:id', proxyToServicesService);
+// All routes under /api/v1/services are proxied
+router.use('/', proxy.servicesProxy);
 
 module.exports = router;
